@@ -7,6 +7,7 @@ package mousemover;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Dictionary;
 
 import javax.swing.JButton;
@@ -31,8 +32,8 @@ public class UserInterface {
     }
 
     //time in seconds
-    public void updateTime(double elapsedTime) {
-        this.time.setText(elapsedTime + " seconds elapsed");
+    public void updateTime(Date elapsedTime) {
+        this.time.setText("elapsed time: " + elapsedTime.getHours() + " : " + elapsedTime.getMinutes() + " : " + elapsedTime.getSeconds());
     }
 
     private void initUI(Notifier notifier) {

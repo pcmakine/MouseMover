@@ -6,6 +6,8 @@ package mousemover;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.TimerTask;
 
 /**
@@ -32,12 +34,14 @@ public class SecondsUpdater extends TimerTask {
         if (!prevLoc.equals(currentLoc)) {
             notifier.notifyToStartSleepingOver();
         }
-        ui.updateTime(this.nanosToSeconds(System.nanoTime() - this.startTime));
+
+        Date date = new Date(System.currentTimeMillis() - this.startTime - TimeZone.getDefault().getOffset(System.currentTimeMillis() - this.startTime ));
+        ui.updateTime(date);
         prevLoc = currentLoc;
     }
 
     public void reset() {
-        this.startTime = System.nanoTime();
+        this.startTime = System.currentTimeMillis();
     }
 
     private double nanosToSeconds(long nanoTime) {
